@@ -25,15 +25,12 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS WarehouseContains (
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS ShoppingCarts (
                       bucket_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                      user_name VARCHAR(40),
+                      phone_number VARCHAR(40),
                       goods_id INTEGER NOT NULL,
-                      FOREIGN KEY(goods_id) REFERENCES Goods(goods_id)
-                    );""")
-
-cursor.execute("""CREATE TABLE IF NOT EXISTS Consumers (
-                      consumer_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                      fio VARCHAR(80),
-                      bucket_id INT NOT NULL,
-                      FOREIGN KEY(bucket_id) REFERENCES ShoppingCarts(bucket_id)
+                      manager_id INTEGER NOT NULL,
+                      FOREIGN KEY(goods_id) REFERENCES Goods(goods_id),
+                      FOREIGN KEY(manager_id) REFERENCES Managers(manager_id)
                     );""")
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS Managers (
@@ -128,7 +125,115 @@ if not cursor.execute("""SELECT * FROM Goods""").fetchall():
     cursor.execute("""INSERT INTO Warehouses (name) VALUES ('warehouses_4');""")
     cursor.execute("""INSERT INTO Warehouses (name) VALUES ('warehouses_5');""")
 
+    cursor.execute("""INSERT INTO Managers (fio) VALUES ('Matthews John');""")
+    cursor.execute("""INSERT INTO Managers (fio) VALUES ('McKenzie Ronald');""")
+    cursor.execute("""INSERT INTO Managers (fio) VALUES ('Thompson Edwin');""")
+    cursor.execute("""INSERT INTO Managers (fio) VALUES ('Howard Horatio');""")
+    cursor.execute("""INSERT INTO Managers (fio) VALUES ('Harris Noel');""")
+    cursor.execute("""INSERT INTO Managers (fio) VALUES ('Cole August');""")
+    cursor.execute("""INSERT INTO Managers (fio) VALUES ('Wilcox Charles');""")
+    cursor.execute("""INSERT INTO Managers (fio) VALUES ('Wilkerson David');""")
+    cursor.execute("""INSERT INTO Managers (fio) VALUES ('Jacobs Ethan');""")
+    cursor.execute("""INSERT INTO Managers (fio) VALUES ('Whitehead Kerry');""")
+
+    cursor.execute("""INSERT INTO Shops (name, manager_id) VALUES ('E-Shop', 1);""")
+    cursor.execute("""INSERT INTO Shops (name, manager_id) VALUES ('Only-E-Shop', 2);""")
+    cursor.execute("""INSERT INTO Shops (name, manager_id) VALUES ('Shop of Electro', 3);""")
+    cursor.execute("""INSERT INTO Shops (name, manager_id) VALUES ('Electro Shop', 4);""")
+    cursor.execute("""INSERT INTO Shops (name, manager_id) VALUES ('Super-E Shop', 5);""")
+    cursor.execute("""INSERT INTO Shops (name, manager_id) VALUES ('Ultra Electronic Shop', 6);""")
+    cursor.execute("""INSERT INTO Shops (name, manager_id) VALUES ('Thunder Shop', 7);""")
+    cursor.execute("""INSERT INTO Shops (name, manager_id) VALUES ('Goods is good', 8);""")
+    cursor.execute("""INSERT INTO Shops (name, manager_id) VALUES ('Only E-Shop', 9);""")
+    cursor.execute("""INSERT INTO Shops (name, manager_id) VALUES ('Keks Shop', 10);""")
+
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+            ('Alex', '291112233', 1, 1);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Alex', '291112233', 3, 1);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Alex', '291112233', 10, 1);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('John', '292223562', 2, 2);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('John', '292223562', 15, 2);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('John', '292223562', 30, 2);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Ben', '444713565', 2, 3);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Ben', '444713565', 17, 3);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Ben', '444713565', 13, 3);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Harry', '238472411', 11, 4);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Harry', '238472411', 8, 4);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Harry', '238472411', 4, 4);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Oliver', '456228836', 31, 5);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Jack', '532225123', 16, 6);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Jack', '532225123', 20, 6);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Charlie', '884563422', 24, 7);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Thomas', '573356714', 31, 8);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Thomas', '573356714', 24, 8);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Thomas', '573356714', 23, 8);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Thomas', '573356714', 11, 8);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Jacob', '746664689', 1, 9);"""
+    )
+    cursor.execute(
+        """INSERT INTO ShoppingCarts (user_name, phone_number, goods_id, manager_id) VALUES
+        ('Alfie ', '66354567', 27, 10);"""
+    )
+
     conn.commit()
-
-
-
