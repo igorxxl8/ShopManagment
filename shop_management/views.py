@@ -13,7 +13,7 @@ def index(request):
 
 
 @login_required
-def topics(request):
+def shops(request):
     """Show all topics."""
     topics = Topic.objects.filter(owner=request.user).order_by('date_added')
     context = {'topics': topics}
@@ -21,7 +21,7 @@ def topics(request):
 
 
 @login_required
-def topic(request, topic_id):
+def shop(request, topic_id):
     """Show a single topic, and all its entries."""
     topic = get_object_or_404(Topic, id=topic_id)
     # Make sure the topic belongs to the current user.
@@ -46,7 +46,7 @@ def new_topic(request):
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
             new_topic.save()
-            return HttpResponseRedirect(reverse('shop_management:topics'))
+            return HttpResponseRedirect(reverse('shop_management:shops'))
 
     context = {'form': form}
     return render(request, 'shop_management/new_topic.html', context)

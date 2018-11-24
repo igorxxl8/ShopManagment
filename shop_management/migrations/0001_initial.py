@@ -37,6 +37,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='entry',
             name='topic',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='shop_management.Topic'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='shop_management.models.Shop'),
         ),
     ]

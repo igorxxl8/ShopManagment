@@ -1,7 +1,7 @@
 {% extends "shop_management/base.html" %}
 
 {% block header %}
-  <h1>Topics</h1>
+  <h1>Shops</h1>
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@
     {% for topic in topics %}
       <li>
         <h3>
-          <a href="{% url 'shop_management:topic' topic.id %}">{{ topic }}</a>
+          <a href="{% url 'shop_management:shop' topic.id %}">{{ topic }}</a>
         </h3>
       </li>
     {% empty %}
