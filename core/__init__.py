@@ -127,7 +127,7 @@ cursor.execute("""INSERT INTO Warehouses (name) VALUES ('warehouses_4');""")
 cursor.execute("""INSERT INTO Warehouses (name) VALUES ('warehouses_5');""")
 
 
-
+kek = 1
 conn.commit()
 
 
