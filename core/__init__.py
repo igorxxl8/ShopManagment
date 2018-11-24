@@ -11,15 +11,16 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS Goods (
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS Warehouses (
                       warehouse_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                      contains_id INTEGER,
-                      FOREIGN KEY(contains_id) REFERENCES Goods(contains_id)
+                      name VARCHAR(40)
                     );""")
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS WarehouseContains (
                       contains_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                      warehouse_id INTEGER,
                       goods_id INTEGER,
                       available INTEGER,
-                      FOREIGN KEY(goods_id) REFERENCES Goods(goods_id)
+                      FOREIGN KEY(goods_id) REFERENCES Goods(goods_id),
+                      FOREIGN KEY(warehouse_id) REFERENCES Warehouses(warehouse_id)
                     );""")
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS ShoppingCarts (
@@ -86,44 +87,44 @@ cursor.execute("""INSERT INTO Goods (name, price) VALUES ('FlashDrive Sillicon D
 cursor.execute("""INSERT INTO Goods (name, price) VALUES ('FlashDrive SMART 32GB', 50);""")
 cursor.execute("""INSERT INTO Goods (name, price) VALUES ('FlashDrive NONSTOP 1000GB', 100);""")
 
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (5, 32, 100);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (5, 1, 22);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (5, 2, 44);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (5, 3, 11);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (5, 4, 22);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (1, 5, 22);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (1, 6, 55);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (1, 7, 22);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (1, 8, 11);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (1, 9, 88);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (1, 10, 33);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (2, 11, 22);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (2, 12, 88);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (2, 13, 112);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (2, 14, 235);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (2, 15, 11);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (2, 16, 5);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (3, 17, 111);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (3, 18, 654);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (3, 19, 123);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (3, 20, 11);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (3, 21, 231);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (3, 22, 11);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (3, 23, 532);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (4, 24, 647);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (4, 25, 267);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (4, 26, 123);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (4, 27, 661);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (4, 28, 123);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (4, 29, 665);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (4, 30, 235);""")
-cursor.execute("""INSERT INTO WarehouseContains (contains_id, goods_id, available) VALUES (4, 31, 124);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (5, 32, 100);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (5, 1, 22);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (5, 2, 44);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (5, 3, 11);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (5, 4, 22);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (1, 5, 22);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (1, 6, 55);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (1, 7, 22);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (1, 8, 11);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (1, 9, 88);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (1, 10, 33);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (2, 11, 22);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (2, 12, 88);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (2, 13, 112);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (2, 14, 235);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (2, 15, 11);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (2, 16, 5);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (3, 17, 111);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (3, 18, 654);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (3, 19, 123);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (3, 20, 11);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (3, 21, 231);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (3, 22, 11);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (3, 23, 532);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (4, 24, 647);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (4, 25, 267);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (4, 26, 123);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (4, 27, 661);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (4, 28, 123);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (4, 29, 665);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (4, 30, 235);""")
+cursor.execute("""INSERT INTO WarehouseContains (warehouse_id, goods_id, available) VALUES (4, 31, 124);""")
 
-cursor.execute("""INSERT INTO Warehouses (contains_id) VALUES (1);""")
-cursor.execute("""INSERT INTO Warehouses (contains_id) VALUES (2);""")
-cursor.execute("""INSERT INTO Warehouses (contains_id) VALUES (3);""")
-cursor.execute("""INSERT INTO Warehouses (contains_id) VALUES (4);""")
-cursor.execute("""INSERT INTO Warehouses (contains_id) VALUES (5);""")
+cursor.execute("""INSERT INTO Warehouses (name) VALUES ('warehouses_1');""")
+cursor.execute("""INSERT INTO Warehouses (name) VALUES ('warehouses_2');""")
+cursor.execute("""INSERT INTO Warehouses (name) VALUES ('warehouses_3');""")
+cursor.execute("""INSERT INTO Warehouses (name) VALUES ('warehouses_4');""")
+cursor.execute("""INSERT INTO Warehouses (name) VALUES ('warehouses_5');""")
 
 
 
