@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=D:\5term\MDiSUBD\Лабораторные\Common_lab\venv"
+set "VIRTUAL_ENV=D:\ShopManagment\venv"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"

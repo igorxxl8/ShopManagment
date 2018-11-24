@@ -10,8 +10,8 @@ def get_data_by_query(query):
     pass
 
 
-def get_good():
-    cursor.execute("""SELECT * FROM Goods""")
+def get_good(good_id):
+    cursor.execute("""SELECT * FROM Goods WHERE Goods.goods_id = {}""".format(good_id))
     return cursor.fetchall()
 
 

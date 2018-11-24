@@ -33,7 +33,7 @@ def goods(request):
 
 
 def good(request, good_id):
-    good_ = get_good()[0]
+    good_ = get_good(good_id)[0]
     context = {"good": good_}
     return render(request, 'shop_management/good.html', context)
 
