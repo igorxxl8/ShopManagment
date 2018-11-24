@@ -10,7 +10,7 @@
 
         <tr>
             <td>
-                <a >{{ shop.name }}</a>
+                <a href="{% url 'shop_management:shop' shop.shop_id %}">{{ shop.name }}</a>
             </td>
         </tr>
     {% endfor %}

@@ -7,12 +7,12 @@
 {% endblock %}
 
 {% block content %}
-  {% for wh in goods %}
+  {% for gd in goods %}
 
-        <tr>
-            <td>
-                <a >{{ wh.1 }}</a>
-            </td>
-        </tr>
+        <ul>
+            <li>
+                <a href="{% url 'shop_management:good' gd.0 %}">{{ gd.1 }}</a>
+            </li>
+        </ul>
     {% endfor %}
 {% endblock %}
