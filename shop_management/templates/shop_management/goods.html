@@ -1,16 +1,17 @@
 {% extends "shop_management/base.html" %}
 
 {% block header %}
-    <h1>Shops</h1>
+  <div class='jumbotron'>
+      <h1>Goods</h1>
+  </div>
 {% endblock %}
 
 {% block content %}
-
-    {% for shop in shops %}
+  {% for wh in goods %}
 
         <tr>
             <td>
-                <a >{{ shop.name }}</a>
+                <a >{{ wh.1 }}</a>
             </td>
         </tr>
     {% endfor %}

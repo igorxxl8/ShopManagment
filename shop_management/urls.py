@@ -10,6 +10,12 @@ urlpatterns = [
     # Home page.
     path('', views.index, name='index'),
     
-    # Show all topics.
+    # Show all shops.
     path('shops/', views.shops, name='shops'),
+
+    path('goods/', views.goods, name='goods'),
+
+    path('warehouses/', views.warehouses, name='warehouses'),
+
+    path('shopping_carts/', views.shopping_carts, name='shopping_carts'),
 ]

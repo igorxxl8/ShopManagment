@@ -1,7 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, Http404
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from core.db_queries import *
 
 
 def index(request):
@@ -9,7 +7,26 @@ def index(request):
     return render(request, 'shop_management/index.html')
 
 
-@login_required
 def shops(request):
-    """Show all topics."""
-    return render(request, 'shop_management/shops.html')
+    """Show all shops"""
+    shops_ = get_all_shops()
+    context = {"shops": shops_}
+    return render(request, 'shop_management/shops.html', context)
+
+
+def goods(request):
+    goods_ = get_all_goods()
+    context = {"goods": goods_}
+    return render(request, 'shop_management/goods.html', context)
+
+
+def warehouses(request):
+    warehouses_ = get_all_warehouse()
+    context = {"warehouses": warehouses_}
+    return render(request, 'shop_management/warehouses.html', context)
+
+
+def shopping_carts(request):
+    shopping_carts_ = get_all_shoppingcarts()
+    context = {"warehouses": shopping_carts_}
+    return render(request, 'shop_management/shopping_carts.html', context)
