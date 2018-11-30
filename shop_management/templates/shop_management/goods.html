@@ -27,6 +27,9 @@
         <th>
             Price
         </th>
+        <th>
+            Available
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -42,8 +45,13 @@
         <td>
             <i>{{good.2}}$</i>
         </td>
+        <td align="center">
+            <i>{{good.4}}</i>
+        </td>
         <td>
-            <button class="btn btn-success">Go to shop</button>
+            <a href="{% url 'shop_management:shop' good.3 %}">
+                <button class="btn btn-success">Go to shop</button>
+            </a>
         </td>
 
     </tr>

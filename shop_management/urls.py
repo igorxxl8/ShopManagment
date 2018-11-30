@@ -23,10 +23,6 @@ urlpatterns = [
 
     path('goods/<good_id>', views.good, name='good'),
 
-    path('warehouses/', views.warehouses, name='warehouses'),
-
-    path('warehouses/<warehouse_id>', views.warehouse, name='warehouse'),
-
     path('shopping_carts/', views.shopping_carts, name='shopping_carts'),
 
     path('data/', views.data, name='data'),

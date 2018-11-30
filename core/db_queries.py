@@ -8,6 +8,19 @@ def get_all_goods():
     return cursor.fetchall()
 
 
+def get_all_goods_with_available_count():
+    cursor.execute(
+        """
+        SELECT Goods.goods_id, Goods.name, Goods.price, WarehouseContains.warehouse_id, WarehouseContains.available 
+        FROM Goods 
+        JOIN WarehouseContains 
+        ON Goods.goods_id = WarehouseContains.goods_id
+        ORDER BY Goods.goods_id 
+        """
+    )
+    return cursor.fetchall()
+
+
 def get_data_by_query(query):
     try:
         cursor.execute(query)
@@ -41,6 +54,26 @@ def get_all_shops_with_managers():
 def get_shop(shop_id):
     cursor.execute(
         """SELECT * FROM Shops WHERE Shops.shop_id = {}""".format(shop_id))
+    return cursor.fetchall()
+
+
+def get_shop_with_manager(shop_id):
+    cursor.execute(
+        """SELECT Shops.name, Shops.manager_id, Managers.fio 
+            FROM Shops 
+            JOIN Managers 
+            ON Shops.manager_id = Managers.manager_id
+            WHERE Shops.shop_id = {}""".format(shop_id))
+    return cursor.fetchall()
+
+
+def get_shops_warehouse_contains(warehouse_id):
+    cursor.execute(
+        """SELECT Goods.goods_id, Goods.name, Goods.price, WarehouseContains.available
+            FROM WarehouseContains
+            JOIN Goods
+            ON Goods.goods_id = WarehouseContains.goods_id
+            WHERE WarehouseContains.warehouse_id = {}""".format(warehouse_id))
     return cursor.fetchall()
 
 
