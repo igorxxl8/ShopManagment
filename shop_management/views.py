@@ -19,7 +19,6 @@ def search(request, search_type):
     query = ' '.join(
         ["SELECT", "*", "FROM", search_type, "WHERE", "name", "LIKE",
          ''.join(["'%", text, "%'"])])
-    print(query)
     data_ = get_data_by_query(query)
     context = {"data": data_, "text": text, "type": search_type}
     return render(request, 'shop_management/search.html', context)
@@ -59,7 +58,6 @@ def good(request, good_id):
 
 def warehouses(request):
     warehouses_ = get_all_warehouse()
-    print(warehouses_)
     context = {"warehouses": warehouses_}
     return render(request, 'shop_management/warehouses.html', context)
 

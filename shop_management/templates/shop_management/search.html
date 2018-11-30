@@ -2,6 +2,8 @@
 
 {% block header %}
 <h1>Search in {{type}}: "{{text}}"</h1>
+<button class="btn btn-warning" onclick="javascript:history.back(); return false;">Back</button>
+<hr>
 {% endblock %}
 
 {% block content %}
@@ -23,8 +25,15 @@
         <td>
             <i>{{record.0}}</i>
         </td>
-        <td>
-            <i>{{record.1}}</i>
+        <td>{% if type == 'shops' %}
+            <a href="{% url 'shop_management:shop' record.0 %}">{{record.1}}</a>
+
+            {% elif type == 'goods' %}
+            <a href="{% url 'shop_management:good' record.0 %}">{{record.1}}</a>
+
+            {% elif type == 'warehouses' %}
+            <a href="{% url 'shop_management:warehouse' record.0 %}">{{record.1}}</a>
+            {% endif %}
         </td>
     </tr>
     {% endfor %}
