@@ -3,8 +3,11 @@
 {% block header %}
 <h1>Shops</h1>
 <h5><i>This is a page with shops of our network</i></h5>
-<form action="{% url 'shop_management:data' 'S' %}" method="post">
-    <input name="s" placeholder="Search on page">
+<form action="{% url 'shop_management:search' 'shops' %}"
+      method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input name="sql" placeholder="Search on page">
     <button class="btn btn-success" name="submit">Go</button>
 </form>
 {% endblock %}

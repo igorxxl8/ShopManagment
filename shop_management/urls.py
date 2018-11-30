@@ -30,4 +30,6 @@ urlpatterns = [
     path('shopping_carts/', views.shopping_carts, name='shopping_carts'),
 
     path('data/', views.data, name='data'),
+
+    path('search/<search_type>', views.search, name='search'),
 ]

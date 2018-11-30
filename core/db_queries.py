@@ -1,3 +1,5 @@
+from sqlite3 import OperationalError
+
 from . import cursor
 
 
@@ -7,8 +9,11 @@ def get_all_goods():
 
 
 def get_data_by_query(query):
-    cursor.execute(query)
-    return cursor.fetchall()
+    try:
+        cursor.execute(query)
+        return cursor.fetchall()
+    except OperationalError:
+        return []
 
 
 def get_good(good_id):

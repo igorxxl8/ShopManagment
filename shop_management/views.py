@@ -14,6 +14,17 @@ def data(request):
     return render(request, 'shop_management/data.html', context)
 
 
+def search(request, search_type):
+    text = request.POST['sql']
+    query = ' '.join(
+        ["SELECT", "*", "FROM", search_type, "WHERE", "name", "LIKE",
+         ''.join(["'%", text, "%'"])])
+    print(query)
+    data_ = get_data_by_query(query)
+    context = {"data": data_, "text": text, "type": search_type}
+    return render(request, 'shop_management/search.html', context)
+
+
 def shops(request):
     """Show all shops"""
     shops_ = get_all_shops_with_managers()

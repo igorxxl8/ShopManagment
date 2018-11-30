@@ -4,8 +4,11 @@
 <h1>Warehouses</h1>
 <h5><i>In this page you can find all shops warehouses</i>
 </h5>
-<form action="{% url 'shop_management:data' 'S' %}" method="post">
-    <input name="s" placeholder="Search on page">
+<form action="{% url 'shop_management:search' 'warehouses' %}"
+      method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input name="sql" placeholder="Search on page">
     <button class="btn btn-success" name="submit">Go</button>
 </form>
 {% endblock %}

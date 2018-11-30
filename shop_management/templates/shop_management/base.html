@@ -8,6 +8,12 @@
 
     <title>Astrix</title>
 
+    <style type="text/css">
+        #serch_form {
+            left: 170px
+        }
+
+    </style>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
@@ -36,19 +42,22 @@
                 </li>
                 <li><a href="{% url 'shop_management:shopping_carts' %}">Shopping
                     Carts</a></li>
-                <li>
-                    <form action="{% url 'shop_management:data' %}"
-                          method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <input name="sql" placeholder="SQL">
-                        <button class="btn btn-success btn-lg" name="submit">
-                            GO
-                        </button>
-                    </form>
-                </li>
-            </ul>
 
+
+            </ul>
+            <div align="right">
+                <form action="{% url 'shop_management:data' %}"
+                      method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input name="sql" placeholder="SQL">
+                    <button class="btn btn-success btn-lg"
+                            name="submit">
+                        GO
+                    </button>
+
+                </form>
+            </div>
 
         </div>
 
