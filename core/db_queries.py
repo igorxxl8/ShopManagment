@@ -7,11 +7,13 @@ def get_all_goods():
 
 
 def get_data_by_query(query):
-    pass
+    cursor.execute(query)
+    return cursor.fetchall()
 
 
 def get_good(good_id):
-    cursor.execute("""SELECT * FROM Goods WHERE Goods.goods_id = {}""".format(good_id))
+    cursor.execute(
+        """SELECT * FROM Goods WHERE Goods.goods_id = {}""".format(good_id))
     return cursor.fetchall()
 
 
@@ -20,8 +22,27 @@ def get_all_shops():
     return cursor.fetchall()
 
 
+def get_all_shops_with_managers():
+    cursor.execute(
+        """
+        SELECT Shops.shop_id, Shops.name, Shops.manager_id, Managers.fio 
+        FROM Shops 
+        JOIN Managers 
+        ON Shops.manager_id = Managers.manager_id
+        """)
+    return cursor.fetchall()
+
+
 def get_shop(shop_id):
-    cursor.execute("""SELECT * FROM Shops WHERE Shops.shop_id = {}""".format(shop_id))
+    cursor.execute(
+        """SELECT * FROM Shops WHERE Shops.shop_id = {}""".format(shop_id))
+    return cursor.fetchall()
+
+
+def get_manager(manager_id):
+    cursor.execute(
+        """SELECT * FROM Managers WHERE Managers.manager_id = {}""".format(
+            manager_id))
     return cursor.fetchall()
 
 
@@ -31,7 +52,9 @@ def get_all_warehouse():
 
 
 def get_warehouse(warehouse_id):
-    cursor.execute("""SELECT * FROM Warehouses WHERE Warehouses.warehouse_id = {}""".format(warehouse_id))
+    cursor.execute(
+        """SELECT * FROM Warehouses WHERE Warehouses.warehouse_id = {}""".format(
+            warehouse_id))
     return cursor.fetchall()
 
 

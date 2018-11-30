@@ -7,22 +7,24 @@ def index(request):
     return render(request, 'shop_management/index.html')
 
 
-def get_data_by_query(request, query):
-    data = get_data_by_query(query)
-    context = {"data" : data}
+def data(request):
+    query = request.POST['sql']
+    data_ = get_data_by_query(query)
+    context = {"data": data_, "query": query}
     return render(request, 'shop_management/data.html', context)
 
 
 def shops(request):
     """Show all shops"""
-    shops_ = get_all_shops()
+    shops_ = get_all_shops_with_managers()
     context = {"shops": shops_}
     return render(request, 'shop_management/shops.html', context)
 
 
 def shop(request, shop_id):
     shop_ = get_shop(shop_id)[0]
-    context = {"shop": shop_}
+    manager_ = get_manager(shop_[2])
+    context = {"shop": shop_, "manager": manager_}
     return render(request, 'shop_management/shop.html', context)
 
 
@@ -30,6 +32,12 @@ def goods(request):
     goods_ = get_all_goods()
     context = {"goods": goods_}
     return render(request, 'shop_management/goods.html', context)
+
+
+def manager(request, manager_id):
+    manager_ = get_manager(manager_id)[0]
+    context = {"manager": manager_}
+    return render(request, 'shop_management/manager.html', context)
 
 
 def good(request, good_id):
@@ -40,6 +48,7 @@ def good(request, good_id):
 
 def warehouses(request):
     warehouses_ = get_all_warehouse()
+    print(warehouses_)
     context = {"warehouses": warehouses_}
     return render(request, 'shop_management/warehouses.html', context)
 

@@ -1,25 +1,23 @@
-{% load bootstrap3 %}
-
 <!DOCTYPE html>
+{% load bootstrap3 %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Learning Log</title>
+    <title>Astrix</title>
 
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
 </head>
 
-<body>
+<body class="b-page__body_font bg-light">
 
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
-
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed"
                     data-toggle="collapse" data-target="#navbar"
@@ -33,19 +31,26 @@
             <ul class="nav navbar-nav">
                 <li><a href="{% url 'shop_management:shops' %}">Shops</a></li>
                 <li><a href="{% url 'shop_management:goods' %}">Goods</a></li>
-                <li><a href="{% url 'shop_management:warehouses' %}">Warehouses</a></li>
-                <li><a href="{% url 'shop_management:shopping_carts' %}">Shopping Carts</a></li>
-                <li><input placeholder="SQL"></li>
                 <li>
-                    <a class="btn btn-succeed"
-                        href="{% url 'shop_management:data' 'gdfg' %}">
-                        GO
-                    </a>
+                    <a href="{% url 'shop_management:warehouses' %}">Warehouses</a>
+                </li>
+                <li><a href="{% url 'shop_management:shopping_carts' %}">Shopping
+                    Carts</a></li>
+                <li>
+                    <form action="{% url 'shop_management:data' %}"
+                          method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input name="sql" placeholder="SQL">
+                        <button class="btn btn-success btn-lg" name="submit">
+                            GO
+                        </button>
+                    </form>
                 </li>
             </ul>
 
 
-        </div><!--/.nav-collapse -->
+        </div>
 
     </div>
 </nav>
@@ -61,7 +66,8 @@
 
     <div>
         <footer>
-            About
+            <hr>
+            &copy; Igor Turcevich, Anton Rekuts, 2018
         </footer>
     </div>
 

@@ -17,13 +17,17 @@ urlpatterns = [
 
     path('shops/<shop_id>', views.shop, name='shop'),
 
+    path('manager/<manager_id>', views.manager, name='manager'),
+
     path('goods/', views.goods, name='goods'),
 
     path('goods/<good_id>', views.good, name='good'),
 
     path('warehouses/', views.warehouses, name='warehouses'),
 
-    path(r'warehouses/<warehouse_id>', views.warehouse, name='warehouse'),
+    path('warehouses/<warehouse_id>', views.warehouse, name='warehouse'),
 
     path('shopping_carts/', views.shopping_carts, name='shopping_carts'),
+
+    path('data/', views.data, name='data'),
 ]
