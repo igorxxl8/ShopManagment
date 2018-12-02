@@ -58,5 +58,26 @@ def good(request, good_id):
 
 def shopping_carts(request):
     shopping_carts_ = get_all_shoppingcarts()
-    context = {"warehouses": shopping_carts_}
+    context = {"shopping_carts": shopping_carts_}
     return render(request, 'shop_management/shopping_carts.html', context)
+
+
+def shopping_cart(request, user_name):
+    shopping_cart_ = get_shopping_cart(user_name)
+    total = 0
+    for tup in shopping_cart_:
+        total += tup[2]
+    context = {"shopping_cart": shopping_cart_, "price": total}
+    return render(request, 'shop_management/shopping_cart.html', context)
+
+
+def warehouses(request):
+    warehouses_ = get_all_warehouse()
+    context = {"warehouses": warehouses_}
+    return render(request, 'shop_management/warehouses.html', context)
+
+
+def warehouse(request, warehouse_id):
+    warehouse_ = get_all_warehouse_contains(warehouse_id)
+    context = {"warehouse": warehouse_}
+    return render(request, 'shop_management/warehouse.html', context)

@@ -8,7 +8,7 @@
 
 {% block content %}
 <table class="table table-striped table-sm">
-    {% if data %}
+    {% if data != "Error" %}
     <thead>
     <tr>
         <th>
@@ -30,6 +30,8 @@
         </td>
     </tr>
     {% endfor %}
+    {% elif data == "Error" %}
+    <p>You can use only "select" operator.</p>
     {% else %}
     <p>Nothing found!</p>
     {% endif %}

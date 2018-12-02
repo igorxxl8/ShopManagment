@@ -11,6 +11,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/base_style.css">
     <link rel="stylesheet" href="/static/css/links.css">
+
     <title>Astrix</title>
 
     <script src="/static/js/jquery-3.3.1.slim.min.js"
@@ -25,31 +26,37 @@
 
 </head>
 
-<body class="b-page__body_font bg-light" id="body">
+<body class="b-page__body_font bg-light" id="body" style="height: 100%">
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="{% url 'shop_management:index' %}">
         Astrix</a>
     <div class="navbar-collapse collapse">
+
         <a class="nav-link" href="{% url 'shop_management:shops' %}">
             <button class="btn btn-primary">Shops</button>
         </a>
+
         <a class="nav-link" href="{% url 'shop_management:goods' %}">
             <button class="btn btn-primary">Goods</button>
         </a>
 
+        <a class="nav-link" href="{% url 'shop_management:warehouses' %}">
+            <button class="btn btn-primary">Warehouses</button>
+        </a>
+
         <a class="nav-link" href="{% url 'shop_management:shopping_carts' %}">
-            <button class="btn btn-primary">Shopping cart</button>
+            <button class="btn btn-primary">Shopping carts</button>
         </a>
     </div>
+
     <div align="right">
         <form action="{% url 'shop_management:data' %}"
               method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <input name="sql" placeholder="SQL">
-            <button class="btn btn-success btn-lg"
-                    name="submit">
-                GO
+            <button class="btn btn-success btn-lg" name="submit">
+                DO
             </button>
         </form>
     </div>

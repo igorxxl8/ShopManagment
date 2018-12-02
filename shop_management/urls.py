@@ -25,7 +25,14 @@ urlpatterns = [
 
     path('shopping_carts/', views.shopping_carts, name='shopping_carts'),
 
+    path('shopping_carts/<user_name>', views.shopping_cart, name='shopping_cart'),
+
     path('data/', views.data, name='data'),
 
     path('search/<search_type>', views.search, name='search'),
+
+    path('warehouses/', views.warehouses, name='warehouses'),
+
+    path('warehouses/<warehouse_id>', views.warehouse, name='warehouse')
+
 ]

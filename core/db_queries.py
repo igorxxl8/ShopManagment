@@ -23,8 +23,11 @@ def get_all_goods_with_available_count():
 
 def get_data_by_query(query):
     try:
-        cursor.execute(query)
-        return cursor.fetchall()
+        if ('select' in query or 'SELECT' in query) and ';' not in query:
+            cursor.execute(query)
+            return cursor.fetchall()
+        else:
+            return "Error"
     except OperationalError:
         return []
 
@@ -54,6 +57,12 @@ def get_all_shops_with_managers():
 def get_shop(shop_id):
     cursor.execute(
         """SELECT * FROM Shops WHERE Shops.shop_id = {}""".format(shop_id))
+    return cursor.fetchall()
+
+
+def get_warehouse(warehouse_id):
+    cursor.execute(
+        """SELECT * FROM Warehouse WHERE Warehouse.warehouse_id = {}""".format(warehouse_id))
     return cursor.fetchall()
 
 
@@ -89,20 +98,21 @@ def get_all_warehouse():
     return cursor.fetchall()
 
 
-def get_warehouse(warehouse_id):
+def get_shopping_cart(user_name):
     cursor.execute(
-        """SELECT * FROM Warehouses WHERE Warehouses.warehouse_id = {}""".format(
-            warehouse_id))
+        """SELECT ShoppingCarts.user_name, Goods.name, Goods.price FROM ShoppingCarts JOIN Goods ON ShoppingCarts.goods_id = Goods.goods_id
+        WHERE ShoppingCarts.user_name = '{}'""".format(user_name))
     return cursor.fetchall()
 
 
 def get_all_shoppingcarts():
-    cursor.execute("SELECT * FROM ShoppingCarts")
+    cursor.execute("SELECT * FROM ShoppingCarts GROUP BY ShoppingCarts.phone_number")
     return cursor.fetchall()
 
 
-def get_all_warehouse_contains():
-    cursor.execute("SELECT * FROM WarehouseContains")
+def get_all_warehouse_contains(warehouse_id):
+    cursor.execute("""SELECT Goods.name, WarehouseContains.available FROM WarehouseContains JOIN Goods on Goods.goods_id = WarehouseContains.goods_id
+                   WHERE WarehouseContains.warehouse_id = {}""".format(warehouse_id))
     return cursor.fetchall()
 
 # conn.commit()
