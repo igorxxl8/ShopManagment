@@ -1,0 +1,40 @@
+{% extends "shop_management/base.html" %}
+
+{% block header %}
+<h1>Shopping cart</h1>
+{% endblock %}
+
+{% block content %}
+<table class="table table-striped table-sm">
+    {% if shopping_carts %}
+    <thead>
+    <tr>
+        <th>
+            №
+        </th>
+        <th>
+            Name
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for shopping_cart in shopping_carts %}
+
+    <tr>
+        <td>
+            <i>{{shopping_cart.0}}</i>
+        </td>
+        <td>
+            <i>{{shopping_cart.1}}</i>
+        </td>
+        <td>
+             <a href="{% url 'shop_management:shopping_cart' shopping_cart.1 %}">About</a>
+        </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <p>There is no shopping carts!</p>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}

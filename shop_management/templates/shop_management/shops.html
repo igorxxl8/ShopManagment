@@ -1,0 +1,52 @@
+{% extends "shop_management/base.html" %}
+
+{% block header %}
+<h1>Shops</h1>
+<h5><i>This is a page with shops of our network</i></h5>
+<form action="{% url 'shop_management:search' 'shops' %}"
+      method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input name="sql" placeholder="Search on page">
+    <button class="btn btn-success" name="submit">Go</button>
+</form>
+{% endblock %}
+
+{% block content %}
+<table class="table table-striped table-sm">
+    {% if shops %}
+    <thead>
+    <tr>
+        <th>
+            №
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Manager
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for shop in shops %}
+
+    <tr>
+        <td>
+            <i>{{shop.0}}</i>
+        </td>
+        <td>
+            <a href="{% url 'shop_management:shop' shop.0 %}">{{shop.1}}</a>
+        </td>
+        <td>
+            <a href="{% url 'shop_management:manager' shop.2 %}">{{shop.3}}</a>
+        </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <p>There is no shops!</p>
+    {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}

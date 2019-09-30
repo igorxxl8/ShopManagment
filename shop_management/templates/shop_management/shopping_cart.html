@@ -1,0 +1,38 @@
+{% extends "shop_management/base.html" %}
+
+{% block header %}
+    <h1>Bucket of {{ shopping_cart.0.0 }}</h1>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped table-sm">
+    {% if shopping_cart %}
+    <thead>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Price
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for goods in shopping_cart %}
+
+    <tr>
+        <td>
+            <i>{{goods.1}}</i>
+        </td>
+        <td>
+            <i>{{goods.2}}$</i>
+        </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <p>There is no goods!</p>
+    {% endif %}
+    </tbody>
+</table>
+<h3 align="right">Total Price: {{ price }}$</h3>
+{% endblock %}

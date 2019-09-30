@@ -1,0 +1,60 @@
+{% extends "shop_management/base.html" %}
+
+{% block header %}
+<h1>{{ shop.0 }}</h1>
+<h2>Manager: {{ shop.2 }}</h2>
+<button class="btn btn-warning" onclick="javascript:history.back(); return false;">Back</button>
+<hr>
+<h2>Goods in shop</h2>
+{% endblock %}
+
+{% block content %}
+<table class="table table-striped table-sm">
+    {% if goods %}
+    <thead>
+    <tr>
+        <th>
+            №
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Available
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for good in goods %}
+
+    <tr>
+        <td>
+            <i>{{good.0}}</i>
+        </td>
+        <td>
+            <a href="{% url 'shop_management:good' good.0 %}">{{good.1}}</a>
+        </td>
+        <td>
+            <i>{{good.2}}$</i>
+        </td>
+        <td align="center">
+            <i>{{good.3}}</i>
+        </td>
+        <!--td>
+            <a href="{% url 'shop_management:shop' good.3 %}">
+                <button class="alert-danger">Buy</button>
+            </a>
+        </td-->
+
+    </tr>
+    {% endfor %}
+    {% else %}
+    <p>There is no goods!</p>
+    {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}

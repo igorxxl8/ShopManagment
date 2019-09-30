@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load bootstrap3 %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="/static/css/bootstrap_4_1_3.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/base_style.css">
+    <link rel="stylesheet" href="/static/css/links.css">
+
+    <title>Astrix</title>
+
+    <script src="/static/js/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="/static/js/ajax_popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="/static/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
+</head>
+
+<body class="b-page__body_font bg-light" id="body" style="height: 100%">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'shop_management:index' %}">
+        Astrix</a>
+    <div class="navbar-collapse collapse">
+
+        <a class="nav-link" href="{% url 'shop_management:shops' %}">
+            <button class="btn btn-primary">Shops</button>
+        </a>
+
+        <a class="nav-link" href="{% url 'shop_management:goods' %}">
+            <button class="btn btn-primary">Goods</button>
+        </a>
+
+        <a class="nav-link" href="{% url 'shop_management:warehouses' %}">
+            <button class="btn btn-primary">Warehouses</button>
+        </a>
+
+        <a class="nav-link" href="{% url 'shop_management:shopping_carts' %}">
+            <button class="btn btn-primary">Shopping carts</button>
+        </a>
+    </div>
+
+    <div align="right">
+        <form action="{% url 'shop_management:data' %}"
+              method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input name="sql" placeholder="SQL">
+            <button class="btn btn-success btn-lg" name="submit">
+                DO
+            </button>
+        </form>
+    </div>
+</nav>
+
+<div class="form-div">
+    <div class="page-header">
+        {% block header %}{% endblock %}
+    </div>
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+
+    <div>
+        <footer>
+            <hr>
+            &copy; Igor Turcevich, Anton Rekuts, 2018
+        </footer>
+    </div>
+
+</div> <!-- /container -->
+
+</body>
+</html>

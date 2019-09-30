@@ -1,0 +1,46 @@
+{% extends "shop_management/base.html" %}
+
+{% block header %}
+<h1>Search in {{type}}: "{{text}}"</h1>
+<button class="btn btn-warning" onclick="javascript:history.back(); return false;">Back</button>
+<hr>
+{% endblock %}
+
+{% block content %}
+<table class="table table-striped table-sm">
+    {% if data %}
+    <thead>
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            Record
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for record in data %}
+    <tr>
+        <td>
+            <i>{{record.0}}</i>
+        </td>
+        <td>{% if type == 'shops' %}
+            <a href="{% url 'shop_management:shop' record.0 %}">{{record.1}}</a>
+
+            {% elif type == 'goods' %}
+            <a href="{% url 'shop_management:good' record.0 %}">{{record.1}}</a>
+
+            {% elif type == 'warehouses' %}
+            <a href="{% url 'shop_management:warehouse' record.0 %}">{{record.1}}</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <p>Nothing found!</p>
+    {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}
